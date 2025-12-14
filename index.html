@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Stylish Portfolio — Qasim Rokeeb</title>
+  <meta name="description" content="A colourful, responsive single-file portfolio template.">
+  <style>
+    :root{
+      --bg:#0f1724; /* night blue */
+      --card:#0b1220;
+      --text:#e6eef8;
+      --muted:#9fb0c8;
+
+      /* default palette (ocean) */
+      --accent-1: #06b6d4;
+      --accent-2: #06a3c9;
+      --accent-3: #0ea5b4;
+
+      --radius: 14px;
+      --glass: rgba(255,255,255,0.04);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    /* other palettes defined as data attributes on body */
+    body[data-palette="sunset"]{ --accent-1:#ff7a59; --accent-2:#ffb86b; --accent-3:#ff4f79; --bg:#151313; --card:#1b1414; }
+    body[data-palette="mint"]{ --accent-1:#34d399; --accent-2:#10b981; --accent-3:#06b6d4; --bg:#071820; --card:#071a1b; }
+    body[data-palette="violet"]{ --accent-1:#8b5cf6; --accent-2:#7c3aed; --accent-3:#a78bfa; --bg:#0b0712; --card:#110b18; }
+
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg),#030511);color:var(--text);}
+
+    .container{max-width:1100px;margin:40px auto;padding:28px}
+
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent-1),var(--accent-2));display:flex;align-items:center;justify-content:center;font-weight:700;color:#021018;box-shadow:0 6px 20px rgba(2,16,24,0.6)}
+    h1{font-size:18px;margin:0}
+    p.lead{margin:0;color:var(--muted);font-size:13px}
+
+    nav{display:flex;gap:10px;align-items:center}
+    .btn{background:var(--glass);border:1px solid rgba(255,255,255,0.04);padding:8px 12px;border-radius:10px;color:var(--text);cursor:pointer;font-weight:600}
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06)}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;margin-top:28px;align-items:center}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:22px;border-radius:var(--radius);backdrop-filter: blur(6px);box-shadow: 0 8px 30px rgba(2,8,16,0.6);border:1px solid rgba(255,255,255,0.03)}
+
+    .intro h2{font-size:28px;margin:0 0 8px}
+    .intro p{color:var(--muted);line-height:1.5}
+
+    .skills{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+    .chip{padding:8px 10px;border-radius:999px;background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03);font-weight:600}
+
+    /* profile card */
+    .profile{display:flex;flex-direction:column;gap:14px}
+    .avatar{width:100%;height:220px;border-radius:12px;background:linear-gradient(180deg,var(--accent-1),var(--accent-3));display:flex;align-items:center;justify-content:center;font-size:40px;font-weight:800;color:#021018}
+    .meta{display:flex;justify-content:space-between;gap:8px;align-items:center}
+
+    /* Projects */
+    section.projects{margin-top:28px}
+    .projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:14px}
+    .project{padding:16px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03)}
+    .project h3{margin:0 0 8px}
+    .project p{margin:0;color:var(--muted);font-size:13px}
+    .project .tags{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
+    .tag{background:rgba(255,255,255,0.03);padding:6px 8px;border-radius:8px;font-weight:600;font-size:12px}
+
+    /* Accent highlights */
+    .accent{color:var(--accent-1);font-weight:800}
+    .accent-bg{background:linear-gradient(90deg,var(--accent-1),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+
+    /* Color strip bar */
+    .palette-bar{display:flex;gap:6px;margin-top:18px}
+    .swatch{width:36px;height:36px;border-radius:8px;cursor:pointer;border:2px solid rgba(255,255,255,0.03)}
+    .swatch[data-p="ocean"]{background:linear-gradient(135deg,#06b6d4,#0ea5b4)}
+    .swatch[data-p="sunset"]{background:linear-gradient(135deg,#ff7a59,#ff4f79)}
+    .swatch[data-p="mint"]{background:linear-gradient(135deg,#34d399,#06b6d4)}
+    .swatch[data-p="violet"]{background:linear-gradient(135deg,#8b5cf6,#a78bfa)}
+
+    /* contact */
+    form{display:grid;gap:10px}
+    input,textarea{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px;border-radius:8px;color:var(--text);outline:none}
+    .muted{color:var(--muted);font-size:13px}
+
+    footer{margin-top:30px;text-align:center;color:var(--muted);font-size:13px}
+
+    /* responsiveness */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr}
+      .projects-grid{grid-template-columns:repeat(2,1fr)}
+      .avatar{height:180px}
+    }
+    @media (max-width:600px){
+      .projects-grid{grid-template-columns:1fr}
+      .container{padding:18px;margin:18px auto}
+      .logo{width:48px;height:48px}
+      .intro h2{font-size:22px}
+    }
+
+    /* small util */
+    .row{display:flex;gap:10px;align-items:center}
+    a.link{color:var(--accent-2);text-decoration:none;font-weight:700}
+  </style>
+</head>
+<body data-palette="ocean">
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">QR</div> <a></a>
+        <div>
+          <h1>Qasim Rokeeb</h1>
+          <p class="lead">Frontend developer • Designer • Speaker</p>
+        </div>
+      </div>
+
+      <nav>
+        <button class="btn ghost" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">Projects</button>
+        <button class="btn ghost" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact</button>
+        <div class="row">
+          <div class="palette-bar" title="Choose palette">
+            <div class="swatch" data-p="ocean" onclick="setPalette('ocean')" aria-label="ocean palette"></div>
+            <div class="swatch" data-p="sunset" onclick="setPalette('sunset')" aria-label="sunset palette"></div>
+            <div class="swatch" data-p="mint" onclick="setPalette('mint')" aria-label="mint palette"></div>
+            <div class="swatch" data-p="violet" onclick="setPalette('violet')" aria-label="violet palette"></div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="card intro">
+          <h2>Hello — I build clean, fast personal websites</h2>
+          <p>I’m a frontend developer who focuses on modern interfaces, accessibility, and performance. I build portfolio websites, landing pages and apps for creators and small teams.</p>
+
+          <div class="skills">
+            <div class="chip">HTML</div>
+            <div class="chip">CSS</div>
+            <div class="chip">JavaScript</div>
+            <div class="chip">React</div>
+            <div class="chip">UI Design</div>
+            <div class="chip">SEO</div>
+          </div>
+
+          <div style="margin-top:18px">
+            <a class="btn" href="#projects">View projects</a>
+            <a class="btn ghost" href="#contact" style="margin-left:8px">Hire me</a>
+          </div>
+
+          <div style="margin-top:18px;display:flex;gap:12px;align-items:center">
+            <div class="meta">
+              <div>
+                <div class="muted">Available for</div>
+                <div style="font-weight:800">Freelance & Remote roles</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="card profile">
+          <div class="avatar">QR</div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <div style="font-weight:800">Qasim R.</div>
+              <div class="muted">Akure, Nigeria</div>
+            </div>
+            <div style="text-align:right">
+              <div class="muted">Rate</div>
+              <div style="font-weight:900">₦ — negotiable</div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:8px;justify-content:space-between;align-items:center">
+            <div>
+              <div class="muted">Experience</div>
+              <div style="font-weight:800">2 years</div>
+            </div>
+            <div>
+              <div class="muted">Focus</div>
+              <div style="font-weight:800">Portfolios & Landing pages</div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:10px;justify-content:space-between">
+            <a class="btn" href="#contact">Message</a>
+            <a class="btn ghost" href="#" onclick="alert('Download CV placeholder')">Download CV</a>
+          </div>
+        </aside>
+      </section>
+
+      <section id="projects" class="projects">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <h2 style="margin:0">Selected Projects</h2>
+          <div class="muted">A few highlights — click to preview</div>
+        </div>
+
+        <div class="projects-grid">
+          <article class="project">
+            <h3>Charity Site</h3>
+            <p>A responsive donation landing page with integrated forms and accessibility-first markup.</p>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Netlify</span></div>
+          </article>
+
+          <article class="project">
+            <h3>Creator Portfolio</h3>
+            <p>Fast-loading personal site for a content creator — focussed on SEO and social sharing.</p>
+            <div class="tags"><span class="tag">SEO</span><span class="tag">Performance</span><span class="tag">JS</span></div>
+          </article>
+
+          <article class="project">
+            <h3>Small Business Landing</h3>
+            <p>Conversion-optimised landing page with A/B ready layout and analytics hooks.</p>
+            <div class="tags"><span class="tag">Landing</span><span class="tag">Analytics</span><span class="tag">Design</span></div>
+          </article>
+
+          <article class="project">
+            <h3>Book Club Portal</h3>
+            <p>A lightweight site for "The Scholars Book Club" to manage events and reading lists.</p>
+            <div class="tags"><span class="tag">Community</span><span class="tag">Events</span></div>
+          </article>
+
+          <article class="project">
+            <h3>Portfolio Template</h3>
+            <p>Template site (this one) — single-file, themeable, easy to customise.</p>
+            <div class="tags"><span class="tag">Template</span><span class="tag">Design</span></div>
+          </article>
+
+          <article class="project">
+            <h3>Mini App - Notes</h3>
+            <p>Simple PWA-style note-taking web app with localStorage sync.</p>
+            <div class="tags"><span class="tag">PWA</span><span class="tag">JS</span></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="contact" style="margin-top:28px">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap">
+          <div style="flex:1;min-width:260px">
+            <h2>Contact</h2>
+            <p class="muted">Interested in working together? Send a message — I reply within a few days.</p>
+
+            <div class="card" style="margin-top:12px">
+              <form onsubmit="event.preventDefault();sendMessage();">
+                <input type="text" id="name" placeholder="Your name" required>
+                <input type="email" id="email" placeholder="Your email" required>
+                <textarea id="message" rows="5" placeholder="Tell me about your project" required></textarea>
+                <div style="display:flex;gap:8px;align-items:center;justify-content:space-between">
+                  <div class="muted">Or email: <a class="link" href="mailto:hello@example.com">hello@example.com</a></div>
+                  <button class="btn" type="submit">Send</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div style="width:320px;min-width:260px">
+            <div class="card">
+              <h3 style="margin-top:0">Quick facts</h3>
+              <p class="muted">I prefer remote work and short contracts. I love simple, fast UI with good typography.</p>
+              <div style="margin-top:12px" class="muted">Social</div>
+              <div style="display:flex;gap:8px;margin-top:8px">
+                <a class="btn ghost" href="#">LinkedIn</a>
+                <a class="btn ghost" href="#">GitHub</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        © " + new Date().getFullYear() + " Qasim Rokeeb — Built with care."
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    function setPalette(name){
+      document.body.setAttribute('data-palette', name);
+      localStorage.setItem('palette', name);
+    }
+    // restore palette
+    (function(){
+      const saved = localStorage.getItem('palette');
+      if(saved) document.body.setAttribute('data-palette', saved);
+    })();
+
+    function sendMessage(){
+      const name = document.getElementById('name').value.trim();
+      alert('Thanks '+(name||'friend')+" — message submitted (demo). We'll pretend it's sent!");
+      document.getElementById('name').value='';
+      document.getElementById('email').value='';
+      document.getElementById('message').value='';
+    }
+  </script>
+</body>
+</html>
