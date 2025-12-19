@@ -1,0 +1,17 @@
+Specify the following tags categories
+
+e.g
+1. h1  //blocklevel
+
+work .
+1. paragraph tags.
+2. h4
+3. span
+4. italicing tags
+5. strong Tag - <strong></strong>
+6. div tag
+7. emphasis tag
+8. a tag.
+
+
+   
