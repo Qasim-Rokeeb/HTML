@@ -27,3 +27,10 @@ I am training students to become web3 developers, starting with solid front-end 
 - Finish CSS box model drills and move into Flexbox and Grid for layout confidence.
 - Introduce responsive design checkpoints, then basic JavaScript for interactivity.
 - Start blockchain primers once front-end fluency is comfortable, leading into Solidity and dApp integration.
+
+
+### Next up after learning
+
+- building for hackathons on base
+- founding startups
+- joining great tech companies
