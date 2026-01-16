@@ -1,0 +1,29 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+nav ul{
+    /* list-style: none; */
+    padding: 15px 20px;
+   
+    margin-right: 10px;
+    margin-left: 10px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+    
+
+}
+
+
+nav ul li{
+    margin-right: 200px;
+    list-style: none;
+
+}
+

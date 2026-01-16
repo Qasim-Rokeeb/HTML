@@ -1,0 +1,58 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body{
+    background: url(bg.png);
+}
+
+header{
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header img{
+    width: 60px;
+}
+
+header ul{
+    display: flex;
+   
+    list-style: none;
+  
+   
+}
+
+header ul li{
+    margin-right: 20px;
+    
+}
+
+header a{
+    text-decoration: none;
+    color: black;
+}
+
+header button{
+    padding: 10px 15px;
+
+    border: none;
+    background-color: red;
+    color: white;
+    border-radius: 32px;
+    cursor: pointer; 
+}
+
+#sign-up{
+    background-color: orange;
+    border: 1px solid black;
+}
+
+.active{
+    font-weight: bold;
+} 
