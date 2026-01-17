@@ -50,8 +50,9 @@ button{
 }
 
 #sign-up{
-    background-color: orange;
+    background:transparent;
     border: 1px solid black;
+    color: black;
 }
 
 .active{
@@ -80,4 +81,8 @@ section p{
      font-family: "Poppins", sans-serif;
      font-weight: 400;
      font-style: Regular;
+}
+
+section img{
+    width: 500px;
 }
