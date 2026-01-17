@@ -85,6 +85,6 @@ section p{
 }
 
 section img{
-    max-width: 320px;
+    max-width: 400px;
     object-fit: contain;
 }
