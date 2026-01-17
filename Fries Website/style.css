@@ -47,6 +47,7 @@ button{
     color: white;
     border-radius: 32px;
     cursor: pointer; 
+    font-weight: 400;
 }
 
 #sign-up{
@@ -84,5 +85,6 @@ section p{
 }
 
 section img{
-    width: 500px;
+    max-width: 320px;
+    object-fit: contain;
 }
