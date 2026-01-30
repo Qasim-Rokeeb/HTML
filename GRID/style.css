@@ -13,11 +13,19 @@ body{
 
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     /* grid-template-rows: repeat(6, 1fr); */
     gap: 20px;
     padding: 20px;
 }
+
+
+/* @media (max-width: 768px) {
+    .grid-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+} */
 /* 
 .grid-1 {
     grid-column: span 4;
